@@ -68,6 +68,22 @@ def test_nr_pare_unicate():
     assert nr_pare_unicate([23,12,3,52,13]) == [12,52]
     assert nr_pare_unicate([2,4,5,4,6,12]) == [2,6,12]
 
+def inlocuire_nr(lista):
+    """
+    inlocuieste numerele din lista care se pot scrie ca suma de alte 2  numere distincte din lista
+    :param lista: lista de nr intregi
+    :return: tuplu
+    """
+    rezultat = lista[:]
+    for i in range(0, len(lista) - 1):
+        for j in lista:
+            now = lista[i] - j
+            if now in lista and now != j:
+                rezultat[i] = (j, now)
+
+    return rezultat
+
+
 
 def main():
 
@@ -76,12 +92,15 @@ def main():
     test_numar_pozitie()
     test_suma()
     test_nr_pare_unicate()
+
     while True:
         print("1.Citeste lista")
         print("2.Det data un numar citit se afla pe o pozitie citita")
         print("3.Afiseaza suma elementelor pare din lista")
         print("4.Afișeaza toate numere din lista care sunt pare si apar o singura data")
-
+        print("5.Afișați lista obținută prin înlocuirea fiecărui număr cu un tuplu format din două numere de pe"
+                "poziții distincte")
+        print("x.Iesire")
         optiune = input("Alegeti optiunea :")
 
         if optiune == "1":
@@ -96,7 +115,13 @@ def main():
                 print("NU")
         if optiune == "3":
             print(suma(lista))
-            
         if optiune == "4":
             print(nr_pare_unicate(lista))
+        if optiune == "5":
+            print(inlocuire_nr(lista))
+        if optiune == "x":
+            break
+
+
+
 main()
